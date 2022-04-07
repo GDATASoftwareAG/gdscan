@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  gdscan:
+  - apiVersion: v2
+    appVersion: 1.0.1
+    created: "2022-04-07T09:44:04.702950146Z"
+    description: Deploys a G DATA scanserver and client
+    digest: b391cda5e86181754837c3cd6e509b862aed98a43a8f36c42283aca0f4877ec6
+    name: gdscan
+    type: application
+    urls:
+    - https://github.com/GDATASoftwareAG/gdscan/releases/download/gdscan-0.1.2/gdscan-0.1.2.tgz
+    version: 0.1.2
+generated: "2022-04-07T09:44:04.702961946Z"

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: gdscan
+description: Deploys a G DATA scanserver and client
+type: application
+version: 0.1.2
+appVersion: "1.0.1"
