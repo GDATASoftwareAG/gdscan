@@ -25,6 +25,7 @@ Since Docker images for the scan server and client are located in a private GitH
     }
 }
 ```
+
 3. Encode docker.config to base64 and copy it into a values.yaml file:
 
 ```yaml
@@ -50,3 +51,13 @@ Usage is described in the application's Swagger UI.
 ## Credentials
 
 If you are interested and want to use the GD Scan by yourself, please [contact us](mailto:oem@gdata.de).
+
+
+# Options
+
+| Name                               | Description                                                                                                                      | Value                    |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| `service.type`                     | service type                                                                                                          | `ClusterIP`              |
+| `service.ports.api`                | API service port                                                                                                      | `8080`                   |
+| `service.annotations`              | service annotations                                                                                              | `{}`                     |
+| `replicaCount`              | number of pods                                                                                              | `1`                     |
