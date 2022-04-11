@@ -11,12 +11,12 @@ The chart deploys one pod, consisting of two containers:
 
 ## Usage
 
-Since Docker images for the scan server and client are located in a private GitHub repository, you need username and password for pulling. The authentication requires some prerequisites:
+Since Docker images for the scan server and client are located in a private GitHub repository, you need credentials for pulling. The authentication requires some prerequisites:
 
 1. Create a string in the format $USERNAME:$PASSWORD and encode it to base64. 
 
 2. Create a docker.config JSON file:
-```
+```json
 {
     "auths": {
         "ghcr.io": {
@@ -27,7 +27,7 @@ Since Docker images for the scan server and client are located in a private GitH
 ```
 3. Encode docker.config to base64 and copy it into a values.yaml file:
 
-```
+```yaml
 secret: 
     dockerconfigjson: $$_BASE64_ENCODED_DOCKER_CONFIG_$$
 ```
@@ -44,7 +44,8 @@ helm repo add gdscan https://gdatasoftwareag.github.io/gdscan/
 helm install gdscan gdscan/gdscan -f values.yaml
 ```
 
-For further information about usage, please checkout the application's Swagger UI.
+Usage is described in the application's Swagger UI.
+
 
 ## Credentials
 
