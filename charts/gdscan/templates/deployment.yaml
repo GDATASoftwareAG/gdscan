@@ -30,15 +30,11 @@ spec:
       imagePullSecrets: 
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Values.server.name }}
           env:
             - name: date
               value: "{{ now | unixEpoch }}"
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.server.image.repository }}:{{ .Values.server.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.server.image.pullPolicy }}
           volumeMounts:
@@ -49,8 +45,6 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
         - name: {{ .Values.client.name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.client.image.repository }}:{{ .Values.client.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.client.image.pullPolicy }}
           volumeMounts:
