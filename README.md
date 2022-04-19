@@ -1,6 +1,6 @@
 # gdscan
 
-This Helm chart deploys GD Scan, an HTTP-based virus scanner. 
+This Helm chart deploys GD Scan, a cloud-native malware scanner.
 
 <img src="GD Scan Server.png" alt="GDScan" style="width:50%">
 
@@ -11,35 +11,14 @@ The chart deploys one pod, consisting of two containers:
 
 ## Usage
 
-Since Docker images for the scan server and client are located in a private GitHub repository, you need credentials for pulling. The authentication requires some prerequisites:
-
-1. Create a string in the format $USERNAME:$PASSWORD and encode it to base64. 
-
-2. Create a docker.config JSON file:
-```json
-{
-    "auths": {
-        "ghcr.io": {
-            "auth": "$$_BASE64_ENCODED_USER_NAME_AND_PASSWORD_$$"
-        }
-    }
-}
-```
-
-3. Encode docker.config to base64 and copy it into a values.yaml file:
-
-```yaml
-secret: 
-    dockerconfigjson: $$_BASE64_ENCODED_DOCKER_CONFIG_$$
-```
-
-4. Add GD Scan repository:
+1. Contact G DATA to get an access token (free trail possible): [Contact us](mailto:oem@gdata.de)
+2. Add GD Scan repository:
 
 ```
 helm repo add gdscan https://gdatasoftwareag.github.io/gdscan/
 ```
 
-5. Now you are able to start GD Scan:
+3. Now you are able to start GD Scan:
 
 ```bash
 helm install gdscan gdscan/gdscan -f values.yaml
@@ -47,7 +26,7 @@ helm install gdscan gdscan/gdscan -f values.yaml
 
 Usage is described in the application's Swagger UI.
 
-6. Updating GD Scan
+4. Updating GD Scan
 
 To get the latest malware signatures, update the helm chart with the following command. An update is recommended every hour.
 
@@ -56,9 +35,9 @@ helm repo update
 helm upgrade gdscan  gdscan/gdscan -f values.yaml
 ```
 
-## Credentials
+## Pricing
 
-If you are interested and want to use the GD Scan by yourself, please [contact us](mailto:oem@gdata.de).
+For pricing details please [contact us](mailto:oem@gdata.de). A free trail is possible.
 
 
 # Options
