@@ -12,7 +12,16 @@ The chart deploys one pod, consisting of two containers:
 ## Usage
 
 1. Contact G DATA to get an access token (free trail possible): [Contact us](mailto:oem@gdata.de)
-2. Add GD Scan repository:
+
+The token has to be set in the `secret.dockerconfigjson` variable on deployment.
+
+```yaml
+# Example values.yaml
+secret: 
+    dockerconfigjson: $$_BASE64_ENCODED_TOKEN_$$
+```
+
+3. Add GD Scan repository:
 
 ```
 helm repo add gdscan https://gdatasoftwareag.github.io/gdscan/
