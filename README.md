@@ -41,12 +41,20 @@ helm repo add gdscan https://gdatasoftwareag.github.io/gdscan/
 
 5. Now you are able to start GD Scan:
 
-```
+```bash
 helm install gdscan gdscan/gdscan -f values.yaml
 ```
 
 Usage is described in the application's Swagger UI.
 
+6. Updating GD Scan
+
+To get the latest malware signatures, update the helm chart with the following command. An update is recommended every hour.
+
+```bash
+helm repo update
+helm upgrade gdscan  gdscan/gdscan -f values.yaml
+```
 
 ## Credentials
 
