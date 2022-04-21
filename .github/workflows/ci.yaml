@@ -29,7 +29,19 @@ jobs:
         with:
           version: v3.4.0
 
+      - name: Install python 
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+
+      - name: Set up chart-testing
+        uses: helm/chart-testing-action@v2.2.1
+
+      - name: Run chart-testing (lint)
+        run: ct lint --validate-maintainers=false --charts charts/gdscan
+
       - name: Run chart-releaser
+        if: startsWith(github.ref, 'refs/tags/ts')
         uses: helm/chart-releaser-action@v1.2.1
         env:
           CR_TOKEN: "${{ secrets.BOT_SECRET }}"
