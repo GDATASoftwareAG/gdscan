@@ -3,50 +3,17 @@ entries:
   gdscan:
   - apiVersion: v2
     appVersion: 1.0.2
-    created: "2022-04-27T12:40:17.682725937Z"
+    created: "2022-04-27T14:18:09.525941834Z"
     description: Deploys a G DATA scanserver and client
-    digest: 46f95f0b5fd3a8e79b25a415ca795bde01a6763f38f78fcacea6ec67259a608c
+    digest: 20d3b8b72e4140b2d37d3348c0671831fa75388b59e1f96ba2a3e05c885ccf32
     maintainers:
     - email: oem@gdata.de
       name: G DATA CyberDefense AG
     name: gdscan
     type: application
     urls:
-    - https://github.com/GDATASoftwareAG/gdscan/releases/download/gdscan-0.1.6/gdscan-0.1.6.tgz
-    version: 0.1.6
-  - apiVersion: v2
-    appVersion: 1.0.2
-    created: "2022-04-21T14:27:47.432639913Z"
-    description: Deploys a G DATA scanserver and client
-    digest: d0350989aa9bca6e69c640ec744b20e1ca5a373d5f50c7e730d61c9a6e33544b
-    maintainers:
-    - email: oem@gdata.de
-      name: G DATA CyberDefense AG
-    name: gdscan
-    type: application
-    urls:
-    - https://github.com/GDATASoftwareAG/gdscan/releases/download/gdscan-0.1.5/gdscan-0.1.5.tgz
-    version: 0.1.5
-  - apiVersion: v2
-    appVersion: 1.0.2
-    created: "2022-04-21T13:54:24.168101987Z"
-    description: Deploys a G DATA scanserver and client
-    digest: 6d6c73a2fc32dd65cf7b36d2e9efee727cc15d81ec45db0e6c719d13b458e179
-    name: gdscan
-    type: application
-    urls:
-    - https://github.com/GDATASoftwareAG/gdscan/releases/download/gdscan-0.1.4/gdscan-0.1.4.tgz
-    version: 0.1.4
-  - apiVersion: v2
-    appVersion: 1.0.1
-    created: "2022-04-12T10:05:52.47013073Z"
-    description: Deploys a G DATA scanserver and client
-    digest: 6119165692dbf4a6a2b8a396d5b845d82879e91d819e212ccbd1cb1687813be3
-    name: gdscan
-    type: application
-    urls:
-    - https://github.com/GDATASoftwareAG/gdscan/releases/download/gdscan-0.1.3/gdscan-0.1.3.tgz
-    version: 0.1.3
+    - https://github.com/GDATASoftwareAG/gdscan/releases/download/gdscan-0.1.7/gdscan-0.1.7.tgz
+    version: 0.1.7
   - apiVersion: v2
     appVersion: 1.0.1
     created: "2022-04-07T09:44:04.702950146Z"
@@ -57,4 +24,4 @@ entries:
     urls:
     - https://github.com/GDATASoftwareAG/gdscan/releases/download/gdscan-0.1.2/gdscan-0.1.2.tgz
     version: 0.1.2
-generated: "2022-04-27T12:40:17.682744637Z"
+generated: "2022-04-27T14:18:09.525959534Z"
