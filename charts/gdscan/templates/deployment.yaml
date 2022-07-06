@@ -25,8 +25,17 @@ spec:
       volumes:
         - name: samples
         {{- if .Values.persistence.enabled }}
-          persistentVolumeClaim:
-            claimName: {{ include "vaas.claimName" . }}
+          ephemeral:
+            volumeClaimTemplate:
+              spec:
+                accessModes: 
+                {{- range .Values.persistence.accessModes }}
+                  - {{ . | quote }}
+                {{- end }}
+                {{- include "common.storage.class" (dict "persistence" .Values.persistence "global" .Values.global) | nindent 2 }}
+                resources:
+                  requests:
+                    storage: 10Gi
         {{- else }}
           emptyDir:
             sizeLimit: {{ .Values.persistence.size | quote }}
