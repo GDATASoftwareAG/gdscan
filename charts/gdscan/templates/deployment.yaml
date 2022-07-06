@@ -5,6 +5,8 @@ metadata:
   labels:
     {{- include "gdscan.labels" . | nindent 4 }}
 spec:
+  strategy:
+    type: "recreate"
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
