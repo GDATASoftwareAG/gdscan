@@ -78,3 +78,4 @@ persistence:
   accessModes:
     - ReadWriteMany
   size: 5Gi
+  storageClass: ""
