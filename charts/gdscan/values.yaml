@@ -71,3 +71,10 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+persistence:
+  enabled: false
+  memory: false
+  accessModes:
+    - ReadWriteMany
+  size: 5Gi

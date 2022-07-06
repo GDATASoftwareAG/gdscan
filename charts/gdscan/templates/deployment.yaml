@@ -22,8 +22,16 @@ spec:
     spec:
       volumes:
         - name: samples
+        {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "vaas.claimName" . }}
+        {{- else }}
           emptyDir:
+            sizeLimit: {{ .Values.persistence.size | quote }}
+          {{- if .Values.persistence.memory }}
             medium : "Memory"
+          {{- end }}
+        {{- end }}
         - name: scan-socket
           emptyDir: {}
       {{- with .Values.imagePullSecrets }}
