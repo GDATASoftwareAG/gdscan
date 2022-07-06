@@ -23,7 +23,7 @@ spec:
       volumes:
         - name: samples
           emptyDir:
-            medium : "Memory"
+            sizeLimit: 32Gi
         - name: scan-socket
           emptyDir: {}
       {{- with .Values.imagePullSecrets }}
