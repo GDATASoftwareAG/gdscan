@@ -53,7 +53,7 @@ spec:
             - name: scan-socket
               mountPath: /var/share/run
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml .Values.resources.server | nindent 12 }}
         - name: {{ .Values.client.name }}
           image: "{{ .Values.client.image.repository }}:{{ .Values.client.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.client.image.pullPolicy }}
@@ -63,7 +63,7 @@ spec:
             - name: scan-socket
               mountPath: /var/share/run
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml .Values.resources.client | nindent 12 }}
           ports:
             - name: api
               containerPort: 8080
