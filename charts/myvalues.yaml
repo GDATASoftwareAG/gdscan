@@ -1,4 +1,0 @@
-secret:
-  dockerconfigjson: "ewogICAgImF1dGhzIjogewogICAgICAgICJnaGNyLmlvIjogewogICAgICAgICAgICAiYXV0aCI6ICJSMlJoZEdGSGFYUm9kV0pDYjNRNloyaHdYMHQyYmxwSldXRmpPVFoxUW5reGRHZE1jM1Z5VEVWUlUydFlia0UxTkRReWIxZHdTQT09IgogICAgICAgIH0KICAgIH0KfQ=="
-persistencs:
-  enabled: true
