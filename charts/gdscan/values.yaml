@@ -56,11 +56,11 @@ resources:
       memory: 1Gi
   client:
     limits:
-      cpu: 500m
+      cpu: 1
       memory: 512Mi
     requests:
       cpu: 500m
-      memory: 256Mi
+      memory: 128Mi
 
 autoscaling:
   enabled: false
