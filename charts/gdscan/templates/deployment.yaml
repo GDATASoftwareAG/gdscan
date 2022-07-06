@@ -27,6 +27,7 @@ spec:
             claimName: {{ include "vaas.claimName" . }}
         {{- else }}
           emptyDir:
+            sizeLimit: {{ .Values.persistence.size | quote }}
           {{- if .Values.persistence.memory }}
             medium : "Memory"
           {{- end }}
