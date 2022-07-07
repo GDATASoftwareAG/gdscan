@@ -26,7 +26,7 @@ secret:
   dockerconfigjson: ""
 
 service:
-  type: ClusterIP
+  type: ""
   port: 8080
 
 ingress:
@@ -77,8 +77,7 @@ affinity: {}
 
 persistence:
   enabled: false
+  accessMode: ReadWriteOnce
   memory: false
-  accessModes:
-    - ReadWriteMany
   size: 5Gi
   storageClass: ""
