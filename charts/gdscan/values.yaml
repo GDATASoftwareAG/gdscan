@@ -76,4 +76,5 @@ persistence:
   storageClass: ""
 autoUpdate:
   enabled: true
-  schedule: "0 * * * *" # every hour
+  # every hour
+  schedule: "0 * * * *"
