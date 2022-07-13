@@ -1,0 +1,82 @@
+{{- if .Values.autoUpdate.enabled -}}
+kind: ServiceAccount
+apiVersion: v1
+metadata:
+  name: update
+  namespace: "{{ .Release.Namespace }}"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: update
+  namespace: "{{ .Release.Namespace }}"
+rules:
+  - apiGroups: ["apps", "extensions"]
+    resources: ["deployments"]
+    resourceNames: [{{ include "gdscan.fullname" . }}]
+    verbs:
+      ["get", "patch", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: update
+  namespace: "{{ .Release.Namespace }}"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: update
+subjects:
+  - kind: ServiceAccount
+    name: update
+    namespace: "{{ .Release.Namespace }}"
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: update
+  namespace: "{{ .Release.Namespace }}"
+spec:
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  concurrencyPolicy: Forbid
+  schedule: "{{ .Values.autoUpdate.schedule }}"
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      activeDeadlineSeconds: 600
+      template:
+        metadata:
+          labels:
+            app.kubernetes.io/name: update
+            app.kubernetes.io/namespace: "{{ .Release.Namespace }}"
+        spec:
+          serviceAccountName: update
+          restartPolicy: Never
+          containers:
+            - name: kubectl
+              image: bitnami/kubectl
+              command:
+                - "kubectl"
+                - "rollout"
+                - "restart"
+                - "deployment/{{ include "gdscan.fullname" . }}"
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: "{{ .Release.Name }}"
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: update-gdscan
+      app.kubernetes.io/namespace: {{ .Release.Namespace }}
+  policyTypes:
+    - Ingress
+  ingress: []
+  egress:
+    - to:
+        - namespaceSelector: {}
+      ports:
+        - port: 6443
+{{- end}}
