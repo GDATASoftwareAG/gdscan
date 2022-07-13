@@ -73,7 +73,7 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      app.kubernetes.io/name: update-gdscan
+      app.kubernetes.io/name: update
       app.kubernetes.io/namespace: {{ .Release.Namespace }}
   policyTypes:
     - Ingress
