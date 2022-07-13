@@ -12,7 +12,7 @@ metadata:
   namespace: "{{ .Release.Namespace }}"
 rules:
   - apiGroups: ["apps", "extensions"]
-    resources: ["deployments"]
+    resources: ["deployments", "statefulsets"]
     resourceNames: [{{ include "gdscan.fullname" . }}]
     verbs:
       ["get", "patch", "list", "watch"]
@@ -60,7 +60,11 @@ spec:
                 - "kubectl"
                 - "rollout"
                 - "restart"
+{{- if and (.Values.persistence.enabled) (eq .Values.persistence.accessMode "ReadWriteOnce" ) }}
+                - "statefulset/{{ include "gdscan.fullname" . }}"
+{{- else }}
                 - "deployment/{{ include "gdscan.fullname" . }}"
+{{- end }}
 ---
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
