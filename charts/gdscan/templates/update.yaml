@@ -79,6 +79,6 @@ spec:
     - Ingress
   ingress: []
   egress:
-      ports:
+    - ports:
         - port: 6443
 {{- end}}
