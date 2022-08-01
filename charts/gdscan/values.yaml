@@ -5,15 +5,11 @@ server:
   image:
     repository: ghcr.io/gdatasoftwareag/scanserver
     pullPolicy: Always
-    # Overrides the image tag whose default is the chart appVersion.
-    tag: ""
 client:
   name: client
   image:
     repository: ghcr.io/gdatasoftwareag/scanclient
     pullPolicy: Always
-    # Overrides the image tag whose default is the chart appVersion.
-    tag: ""
 
 imagePullSecrets:
   - name: gdscanregistry
