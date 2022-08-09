@@ -5,5 +5,4 @@ maintainers:
   - name: G DATA CyberDefense AG
     email: oem@gdata.de
 type: application
-version: 0.5.1
-appVersion: 1.2.16
+version: 0.5.2

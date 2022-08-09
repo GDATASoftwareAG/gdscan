@@ -46,7 +46,7 @@ spec:
           env:
             - name: date
               value: "{{ now | unixEpoch }}"
-          image: "{{ .Values.server.image.repository }}:{{ .Values.server.image.tag | default .Chart.AppVersion }}"
+          image: '{{ .Values.server.image.repository }}:{{ .Values.server.image.tag | default "latest" }}'
           imagePullPolicy: {{ .Values.server.image.pullPolicy }}
           volumeMounts:
             - name: samples
@@ -56,7 +56,7 @@ spec:
           resources:
             {{- toYaml .Values.resources.server | nindent 12 }}
         - name: {{ .Values.client.name }}
-          image: "{{ .Values.client.image.repository }}:{{ .Values.client.image.tag | default .Chart.AppVersion }}"
+          image: '{{ .Values.client.image.repository }}:{{ .Values.client.image.tag | default "latest" }}'
           imagePullPolicy: {{ .Values.client.image.pullPolicy }}
           volumeMounts:
             - name: samples
