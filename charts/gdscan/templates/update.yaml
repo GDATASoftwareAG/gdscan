@@ -37,6 +37,7 @@ metadata:
   name: update
   namespace: "{{ .Release.Namespace }}"
 spec:
+  startingDeadlineSeconds: 300
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
   concurrencyPolicy: Forbid
