@@ -57,10 +57,9 @@ resources:
 
 autoscaling:
   enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPU: 80
-  targetMemory: 80
+  minReplicas: 2
+  maxReplicas: 20
+  targetCPU: 75
 
 nodeSelector: {}
 
