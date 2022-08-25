@@ -5,13 +5,13 @@ server:
   image:
     repository: ghcr.io/gdatasoftwareag/scanserver
     pullPolicy: Always
-    tag: 1.2.17
+    tag: 1.4.4
 client:
   name: client
   image:
     repository: ghcr.io/gdatasoftwareag/scanclient
     pullPolicy: Always
-    tag: 1.2.17
+    tag: 1.4.4
 
 imagePullSecrets:
   - name: gdscanregistry
