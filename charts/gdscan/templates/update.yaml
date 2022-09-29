@@ -77,7 +77,7 @@ spec:
       app.kubernetes.io/name: update
       app.kubernetes.io/namespace: {{ .Release.Namespace }}
   policyTypes:
-    - Ingress
+    - Egress
   ingress: []
   egress:
     - ports:
