@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  ScanServer:
+    image: ghcr.io/gdatasoftwareag/scanserver:latest
+    restart: always
+    volumes:
+      - samples:/tmp/scan
+      - scanSocket:/var/share/run
+
+  ScanClient:
+    image: ghcr.io/gdatasoftwareag/scanclient:latest
+    restart: always
+    ports:
+      - 8080:8080
+    volumes:
+      - samples:/tmp/scan
+      - scanSocket:/var/share/run
+
+volumes:
+  samples:
+  scanSocket:
+
