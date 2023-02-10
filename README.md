@@ -11,7 +11,7 @@ The chart deploys one pod, consisting of two containers:
 
 ## Usage
 
-1. Contact G DATA to get an access token (free trail possible): [Contact us](mailto:oem@gdata.de)
+1. Contact G DATA to get an access token (free trial possible): [Contact us](mailto:oem@gdata.de)
 
 The token has to be set in the `secret.dockerconfigjson` variable on deployment.
 
@@ -46,7 +46,7 @@ helm upgrade gdscan  gdscan/gdscan -f values.yaml
 
 ## Pricing
 
-For pricing details please [contact us](mailto:oem@gdata.de). A free trail is possible.
+For pricing details please [contact us](mailto:oem@gdata.de). A free trial is possible.
 
 
 # Options
