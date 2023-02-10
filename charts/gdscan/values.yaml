@@ -73,7 +73,9 @@ persistence:
   memory: false
   size: 5Gi
   storageClass: ""
+
 autoUpdate:
   enabled: true
   # every hour
   schedule: "0 * * * *"
+  k8sApiPort: 6443

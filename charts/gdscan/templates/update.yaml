@@ -81,5 +81,5 @@ spec:
   ingress: []
   egress:
     - ports:
-        - port: 6443
+        - port: {{ .Values.autoUpdate.k8sApiPort }}
 {{- end}}
