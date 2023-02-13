@@ -18,7 +18,19 @@ The token has to be set in the `secret.dockerconfigjson` variable on deployment.
 ```yaml
 # Example values.yaml
 secret: 
-    dockerconfigjson: $$_BASE64_ENCODED_TOKEN_$$
+    dockerconfigjson: $$_BASE64_ENCODED_JSON_CONTAINING_TOKEN_$$
+```
+
+Example of the dockerconfigjson
+
+```json
+{
+    "auths": {
+            "ghcr.io": {
+                    "auth": "$$_BASE64_ENCODED_USERNAME_AND_TOKEN_$$"
+            }
+    }
+}
 ```
 
 3. Add GD Scan repository:
