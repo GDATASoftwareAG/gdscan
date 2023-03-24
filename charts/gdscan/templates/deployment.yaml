@@ -81,6 +81,7 @@ spec:
               port: api
             initialDelaySeconds: 5
             periodSeconds: 5     
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}      
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

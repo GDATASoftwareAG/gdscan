@@ -12,6 +12,7 @@ client:
     repository: ghcr.io/gdatasoftwareag/scanclient
     pullPolicy: Always
     tag: 1.4.4
+terminationGracePeriodSeconds: 30
 
 imagePullSecrets:
   - name: gdscanregistry
