@@ -3,6 +3,7 @@ services:
   ScanServer:
     image: ghcr.io/gdatasoftwareag/scanserver:latest
     restart: always
+    stop_grace_period: 120s
     volumes:
       - samples:/tmp/scan
       - scanSocket:/var/share/run
@@ -10,6 +11,7 @@ services:
   ScanClient:
     image: ghcr.io/gdatasoftwareag/scanclient:latest
     restart: always
+    stop_grace_period: 120s
     ports:
       - 8080:8080
     volumes:
