@@ -1,15 +1,17 @@
 version: '3.8'
 services:
   ScanServer:
-    image: ghcr.io/gdatasoftwareag/scanserver:latest
+    image: artifactory.gdata.de:6555/development/vaas/gdatasoftwareag/scanserver:1.5.2
     restart: always
+    stop_grace_period: 120s
     volumes:
       - samples:/tmp/scan
       - scanSocket:/var/share/run
 
   ScanClient:
-    image: ghcr.io/gdatasoftwareag/scanclient:latest
+    image: artifactory.gdata.de:6555/development/vaas/gdatasoftwareag/scanclient:1.5.2
     restart: always
+    stop_grace_period: 120s
     ports:
       - 8080:8080
     volumes:
