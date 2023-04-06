@@ -43,14 +43,12 @@ ingress:
 resources:
   server:
     limits:
-      cpu: 4
       memory: 2Gi
     requests:
       cpu: 2
       memory: 2Gi
   client:
     limits:
-      cpu: 1
       memory: 128Mi
     requests:
       cpu: 1
