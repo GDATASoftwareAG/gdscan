@@ -74,6 +74,10 @@ persistence:
   storageClass: ""
 
 autoUpdate:
+  image:
+    registry: docker.io
+    repository: bitnami/kubectl
+    tag: latest
   enabled: true
   # every hour
   schedule: "0 * * * *"

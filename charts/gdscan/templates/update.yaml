@@ -56,7 +56,7 @@ spec:
           restartPolicy: Never
           containers:
             - name: kubectl
-              image: bitnami/kubectl
+              image: "{{ .Values.autoUpdate.image.registry }}/{{ .Values.autoUpdate.image.repository }}:{{ .Values.autoUpdate.image.tag }}"
               command:
                 - "kubectl"
                 - "rollout"
