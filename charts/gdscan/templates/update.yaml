@@ -54,6 +54,10 @@ spec:
         spec:
           serviceAccountName: update
           restartPolicy: Never
+          {{- with .Values.nodeSelector }}
+          nodeSelector:
+            {{- toYaml . | nindent 8 }}
+          {{- end }}       
           containers:
             - name: kubectl
               image: "{{ .Values.autoUpdate.image.registry }}/{{ .Values.autoUpdate.image.repository }}:{{ .Values.autoUpdate.image.tag }}"
