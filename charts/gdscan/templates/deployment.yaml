@@ -37,6 +37,8 @@ spec:
         {{- end }}
         - name: scan-socket
           emptyDir: {}
+        - name: client-tmp
+          emptyDir: {}
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets: 
         {{- toYaml . | nindent 8 }}
@@ -63,6 +65,8 @@ spec:
               mountPath: /tmp/scan
             - name: scan-socket
               mountPath: /var/share/run
+            - name: client-tmp
+              mountPath: /tmp
           resources:
             {{- toYaml .Values.resources.client | nindent 12 }}
           ports:
