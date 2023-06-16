@@ -61,6 +61,9 @@ spec:
           containers:
             - name: kubectl
               image: "{{ .Values.autoUpdate.image.registry }}/{{ .Values.autoUpdate.image.repository }}:{{ .Values.autoUpdate.image.tag }}"
+              {{- if .Values.autoUpdate.containerSecurityContext.enabled }}
+              securityContext: {{- omit .Values.autoUpdate.containerSecurityContext "enabled" | toYaml | nindent 16 }}
+              {{- end }}                
               command:
                 - "kubectl"
                 - "rollout"
