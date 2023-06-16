@@ -84,3 +84,6 @@ autoUpdate:
   networkPolicy:
     enabled: true
     k8sApiPort: 6443
+
+containerSecurityContext:
+  enabled: false
