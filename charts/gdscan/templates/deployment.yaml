@@ -37,8 +37,10 @@ spec:
         {{- end }}
         - name: scan-socket
           emptyDir: {}
+          {{- if .Values.client.containerSecurityContext.enabled }}          
         - name: client-tmp
           emptyDir: {}
+          {{- end }}
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets: 
         {{- toYaml . | nindent 8 }}
@@ -60,13 +62,18 @@ spec:
         - name: {{ .Values.client.name }}
           image: '{{ .Values.client.image.repository }}:{{ .Values.client.image.tag | default "latest" }}'
           imagePullPolicy: {{ .Values.client.image.pullPolicy }}
+          {{- if .Values.client.containerSecurityContext.enabled }}
+          securityContext: {{- omit .Values.client.containerSecurityContext "enabled" | toYaml | nindent 12 }}
+          {{- end }}
           volumeMounts:
             - name: samples
               mountPath: /tmp/scan
             - name: scan-socket
               mountPath: /var/share/run
+              {{- if .Values.client.containerSecurityContext.enabled }}
             - name: client-tmp
               mountPath: /tmp
+              {{- end }}
           resources:
             {{- toYaml .Values.resources.client | nindent 12 }}
           ports:
