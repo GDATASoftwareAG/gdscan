@@ -5,13 +5,13 @@ server:
   image:
     repository: ghcr.io/gdatasoftwareag/scanserver
     pullPolicy: Always
-    tag: 1.7.0
+    tag: 1.7.1
 client:
   name: client
   image:
     repository: ghcr.io/gdatasoftwareag/scanclient
     pullPolicy: Always
-    tag: 1.7.0
+    tag: 1.7.1
   containerSecurityContext:
     enabled: false
 terminationGracePeriodSeconds: 30
