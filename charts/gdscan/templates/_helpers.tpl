@@ -48,6 +48,7 @@ Selector labels
 {{- define "gdscan.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "gdscan.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/namespace: {{ .Release.Namespace }}
 {{- end }}
 
 {{- define "common.tplvalues.render" -}}
