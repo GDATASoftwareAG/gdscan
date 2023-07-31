@@ -2,6 +2,18 @@ apiVersion: v1
 entries:
   gdscan:
   - apiVersion: v2
+    created: "2023-07-31T07:56:48.02908503Z"
+    description: Deploys a G DATA scanserver and client
+    digest: 35424e7b0752bd9ff08518a9a7652c4e38b642a905bc70dcae6bd32618db4108
+    maintainers:
+    - email: oem@gdata.de
+      name: G DATA CyberDefense AG
+    name: gdscan
+    type: application
+    urls:
+    - https://github.com/GDATASoftwareAG/gdscan/releases/download/gdscan-1.1.4/gdscan-1.1.4.tgz
+    version: 1.1.4
+  - apiVersion: v2
     created: "2023-07-07T12:02:36.273593044Z"
     description: Deploys a G DATA scanserver and client
     digest: 3acfc142a441422cadbe668f0170fd555541508771bacc4472dc727179f9a688
@@ -537,4 +549,4 @@ entries:
     urls:
     - https://github.com/GDATASoftwareAG/gdscan/releases/download/gdscan-0.1.2/gdscan-0.1.2.tgz
     version: 0.1.2
-generated: "2023-07-07T12:02:36.27406075Z"
+generated: "2023-07-31T07:56:48.029406931Z"
