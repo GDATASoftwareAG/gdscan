@@ -63,9 +63,12 @@ For pricing details please [contact us](mailto:oem@gdata.de). A free trial is po
 
 # Options
 
-| Name                               | Description                                                                                                                      | Value                    |
-| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| Name                               | Description                                                                                                           | Value                    |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------ |
 | `service.type`                     | service type                                                                                                          | `ClusterIP`              |
 | `service.ports.api`                | API service port                                                                                                      | `8080`                   |
-| `service.annotations`              | service annotations                                                                                              | `{}`                     |
-| `replicaCount`              | number of pods                                                                                              | `1`                     |
+| `service.annotations`              | service annotations                                                                                                   | `{}`                     |
+| `replicaCount`                     | number of pods                                                                                                        | `1`                      |
+| `autoscaling.enabled`              | enable auto scaling                                                                                                   | `false`                  |            
+| `autoscaling.maxReplicas`          | maximum number of replicas                                                                                            | `20`                     |
+| `autoscaling.metrics`              | custom metrics for auto scaling                                                                                       |                          |
