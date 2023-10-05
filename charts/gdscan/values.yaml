@@ -61,6 +61,7 @@ autoscaling:
   minReplicas: 2
   maxReplicas: 20
   targetCPU: 75
+  metrics:
 
 nodeSelector: {}
 
