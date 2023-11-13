@@ -35,7 +35,7 @@ jobs:
           python-version: 3.7
 
       - name: Set up chart-testing
-        uses: helm/chart-testing-action@v2.4.0
+        uses: helm/chart-testing-action@v2.6.0
 
       - name: Run chart-testing (lint)
         run: ct lint --validate-maintainers=false --charts charts/gdscan
