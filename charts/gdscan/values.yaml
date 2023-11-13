@@ -5,13 +5,13 @@ server:
   image:
     repository: ghcr.io/gdatasoftwareag/scanserver
     pullPolicy: Always
-    tag: 1.7.2
+    tag: 1.8.0
 client:
   name: client
   image:
     repository: ghcr.io/gdatasoftwareag/scanclient
     pullPolicy: Always
-    tag: 1.7.2
+    tag: 1.8.0
   containerSecurityContext:
     enabled: false
 terminationGracePeriodSeconds: 30
@@ -30,6 +30,14 @@ secret:
 service:
   type: ""
   port: 8080
+
+metrics:
+  servicemonitor:
+    enabled: false
+    port: 8080
+    path: /metrics
+    scheme: http
+
 
 ingress:
   enabled: false
