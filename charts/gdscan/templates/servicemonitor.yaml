@@ -10,7 +10,7 @@ spec:
     matchLabels:
       {{- include "gdscan.selectorLabels" . | nindent 8 }}
   endpoints:
-  - port: {{ .Values.metrics.servicemonitor.port }}
+  - port: {{ .Values.metrics.servicemonitor.port | quote }}
     path: {{ .Values.metrics.servicemonitor.path }}
     scheme: {{ .Values.metrics.servicemonitor.scheme | quote }}
   namespaceSelector:
