@@ -6,14 +6,9 @@ metadata:
   labels:
     {{- include "gdscan.labels" . | nindent 4 }}
 spec:
-  selector:
-    matchLabels:
-      {{- include "gdscan.selectorLabels" . | nindent 8 }}
   endpoints:
   - port: {{ .Values.metrics.servicemonitor.port | quote }}
     path: {{ .Values.metrics.servicemonitor.path }}
-    scheme: {{ .Values.metrics.servicemonitor.scheme | quote }}
-  namespaceSelector:
-    matchNames:
-    - {{ .Release.Namespace }}
+  selector:
+    {{- include "gdscan.selectorLabels" . | nindent 4 }}
 {{- end }}

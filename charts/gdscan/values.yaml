@@ -36,8 +36,6 @@ metrics:
     enabled: false
     port: 8080
     path: /metrics
-    scheme: http
-
 
 ingress:
   enabled: false
