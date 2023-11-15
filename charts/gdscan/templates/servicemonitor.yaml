@@ -10,5 +10,6 @@ spec:
   - port: {{ .Values.metrics.servicemonitor.port | quote }}
     path: {{ .Values.metrics.servicemonitor.path }}
   selector:
-    {{- include "gdscan.selectorLabels" . | nindent 4 }}
+    matchLabels:
+      {{- include "gdscan.selectorLabels" . | nindent 4 }}
 {{- end }}
