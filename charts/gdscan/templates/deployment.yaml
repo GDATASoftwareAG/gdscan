@@ -57,6 +57,8 @@ spec:
               mountPath: /tmp/scan
             - name: scan-socket
               mountPath: /var/share/run
+            - name: server-var-log
+              mountPath: /var/log
           resources:
             {{- toYaml .Values.resources.server | nindent 12 }}
         - name: {{ .Values.client.name }}

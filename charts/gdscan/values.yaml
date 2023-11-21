@@ -6,6 +6,8 @@ server:
     repository: ghcr.io/gdatasoftwareag/scanserver
     pullPolicy: Always
     tag: 1.8.0
+  containerSecurityContext:
+    enabled: false
 client:
   name: client
   image:

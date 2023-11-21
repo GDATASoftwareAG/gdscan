@@ -49,11 +49,18 @@ spec:
               value: "{{ now | unixEpoch }}"
           image: "{{ .Values.server.image.repository }}:{{ .Values.server.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.server.image.pullPolicy }}
+          {{- if .Values.server.containerSecurityContext.enabled }}
+          securityContext: {{- omit .Values.server.containerSecurityContext "enabled" | toYaml | nindent 12 }}
+          {{- end }}
           volumeMounts:
             - name: samples
               mountPath: /tmp/scan
             - name: scan-socket
               mountPath: /var/share/run
+              {{- if .Values.server.containerSecurityContext.enabled }}
+            - name: server-var-log
+              mountPath: /var/log
+              {{- end }}
           resources:
             {{- toYaml .Values.resources.server | nindent 12 }}
         - name: {{ .Values.client.name }}
@@ -61,7 +68,7 @@ spec:
           imagePullPolicy: {{ .Values.client.image.pullPolicy }}
           {{- if .Values.client.containerSecurityContext.enabled }}
           securityContext: {{- omit .Values.client.containerSecurityContext "enabled" | toYaml | nindent 12 }}
-          {{- end }}          
+          {{- end }}
           volumeMounts:
             - name: samples
               mountPath: /tmp/scan
