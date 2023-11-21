@@ -42,6 +42,10 @@ spec:
         - name: client-tmp
           emptyDir: {}
           {{- end }}
+          {{- if .Values.server.containerSecurityContext.enabled }}
+        - name: server-var-log
+          emptyDir: {}
+          {{- end }}
       containers:
         - name: {{ .Values.server.name }}
           env:
