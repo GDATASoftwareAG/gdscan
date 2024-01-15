@@ -98,7 +98,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 
 {{- end -}}
 
-{{ define "gdscan.imagePullSecrets" }}
+{{- define "gdscan.imagePullSecrets" -}}
 imagePullSecrets:
   {{- range .Values.global.imagePullSecrets }}
   - name: {{ . }}
@@ -106,4 +106,4 @@ imagePullSecrets:
   {{- range .Values.imagePullSecrets }}
   - name: {{ . }}
   {{- end }}
-{{ end }}
+{{- end -}}
