@@ -42,6 +42,16 @@ app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
+{{- define "gdscan.imagePullSecrets" -}}
+imagePullSecrets:
+  {{- range .Values.global.imagePullSecrets }}
+  - name: {{ . }}
+  {{- end }}
+  {{- range .Values.imagePullSecrets }}
+  - name: {{ . }}
+  {{- end }}
+{{- end }}
+
 {{/*
 Selector labels
 */}}
@@ -96,14 +106,4 @@ app.kubernetes.io/instance: {{ .Release.Name }}
   {{- end -}}
 {{- end -}}
 
-{{- end -}}
-
-{{- define "gdscan.imagePullSecrets" -}}
-imagePullSecrets:
-  {{- range .Values.global.imagePullSecrets }}
-  - name: {{ . }}
-  {{- end }}
-  {{- range .Values.imagePullSecrets }}
-  - name: {{ . }}
-  {{- end }}
 {{- end -}}

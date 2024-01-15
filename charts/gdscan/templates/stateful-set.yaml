@@ -31,7 +31,7 @@ spec:
       labels:
         {{- include "gdscan.selectorLabels" . | nindent 8 }}
     spec:
-      {{- with gdscan.imagePullSecrets }}
+      {{- with "gdscan.imagePullSecrets" }}
       imagePullSecrets: 
         {{- toYaml . | nindent 8 }}
       {{- end }}
