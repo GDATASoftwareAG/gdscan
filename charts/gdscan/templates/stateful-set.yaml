@@ -31,15 +31,18 @@ spec:
       labels:
         {{- include "gdscan.selectorLabels" . | nindent 8 }}
     spec:
-      {{- with .Values.imagePullSecrets }}
-      imagePullSecrets: 
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+      {{- include "gdscan.imagePullSecrets" . | nindent 6 }}
       volumes:
+        - name: server-tmp
+          emptyDir: {}
         - name: scan-socket
           emptyDir: {}
           {{- if .Values.client.containerSecurityContext.enabled }}
         - name: client-tmp
+          emptyDir: {}
+          {{- end }}
+          {{- if .Values.server.containerSecurityContext.enabled }}
+        - name: server-var-log
           emptyDir: {}
           {{- end }}
       containers:
@@ -49,11 +52,20 @@ spec:
               value: "{{ now | unixEpoch }}"
           image: "{{ .Values.server.image.repository }}:{{ .Values.server.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.server.image.pullPolicy }}
+          {{- if .Values.server.containerSecurityContext.enabled }}
+          securityContext: {{- omit .Values.server.containerSecurityContext "enabled" | toYaml | nindent 12 }}
+          {{- end }}
           volumeMounts:
+            - name: server-tmp
+              mountPath: /tmp
             - name: samples
               mountPath: /tmp/scan
             - name: scan-socket
               mountPath: /var/share/run
+              {{- if .Values.server.containerSecurityContext.enabled }}
+            - name: server-var-log
+              mountPath: /var/log
+              {{- end }}
           resources:
             {{- toYaml .Values.resources.server | nindent 12 }}
         - name: {{ .Values.client.name }}
@@ -61,7 +73,7 @@ spec:
           imagePullPolicy: {{ .Values.client.image.pullPolicy }}
           {{- if .Values.client.containerSecurityContext.enabled }}
           securityContext: {{- omit .Values.client.containerSecurityContext "enabled" | toYaml | nindent 12 }}
-          {{- end }}          
+          {{- end }}
           volumeMounts:
             - name: samples
               mountPath: /tmp/scan
@@ -81,13 +93,13 @@ spec:
             httpGet:
               path: /health
               port: api
-            initialDelaySeconds: 5
+            initialDelaySeconds: 15
             periodSeconds: 5
           readinessProbe:
             httpGet:
               path: /health
               port: api
-            initialDelaySeconds: 5
+            initialDelaySeconds: 15
             periodSeconds: 5
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}       
       {{- with .Values.nodeSelector }}

@@ -2,16 +2,20 @@
 
 This Helm chart deploys GD Scan, a cloud-native malware scanner.
 
+    This project is deprecated and the lives on in [VaaS](https://github.com/GDATASoftwareAG/vaas).
+    VaaS is a malware protection service for the cloud, which is available as a SaaS solution hosted by 
+    G DATA CyberDefense and on-premise for self hosting.
+
 <img src="GD Scan Server.png" alt="GDScan" style="width:50%">
 
 The chart deploys one pod, consisting of two containers:
- * GD Scan Server that is responsible for scanning. It contains two scan engines, which are Bitdefender and G DATA.
+ * GD Scan Server that is responsible for scanning.
  * GD Scan Client that initiates scans and receive results. The client is wrapped by an HTTP API.
 
 
 ## Usage
 
-1. Contact G DATA to get an access token (free trial possible): [Contact us](mailto:oem@gdata.de)
+1. Add token to Docker registry config.
 
 The token has to be set in the `secret.dockerconfigjson` variable on deployment.
 
@@ -56,16 +60,14 @@ helm repo update
 helm upgrade gdscan  gdscan/gdscan -f values.yaml
 ```
 
-## Pricing
-
-For pricing details please [contact us](mailto:oem@gdata.de). A free trial is possible.
-
-
 # Options
 
-| Name                               | Description                                                                                                                      | Value                    |
-| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| Name                               | Description                                                                                                           | Value                    |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------ |
 | `service.type`                     | service type                                                                                                          | `ClusterIP`              |
 | `service.ports.api`                | API service port                                                                                                      | `8080`                   |
-| `service.annotations`              | service annotations                                                                                              | `{}`                     |
-| `replicaCount`              | number of pods                                                                                              | `1`                     |
+| `service.annotations`              | service annotations                                                                                                   | `{}`                     |
+| `replicaCount`                     | number of pods                                                                                                        | `1`                      |
+| `autoscaling.enabled`              | enable auto scaling                                                                                                   | `false`                  |            
+| `autoscaling.maxReplicas`          | maximum number of replicas                                                                                            | `20`                     |
+| `autoscaling.metrics`              | custom metrics for auto scaling                                                                                       |                          |
