@@ -50,6 +50,7 @@ spec:
         metadata:
           labels:
             app.kubernetes.io/name: update
+            app.kubernetes.io/instance: "{{ .Release.Name }}"
             app.kubernetes.io/namespace: "{{ .Release.Namespace }}"
         spec:
           serviceAccountName: update
