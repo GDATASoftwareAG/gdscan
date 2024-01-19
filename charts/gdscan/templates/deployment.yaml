@@ -35,12 +35,16 @@ spec:
             medium : "Memory"
           {{- end }}
         {{- end }}
+        - name: server-tmp
+          emptyDir: {}
         - name: scan-socket
           emptyDir: {}
           {{- if .Values.client.containerSecurityContext.enabled }}          
         - name: client-tmp
           emptyDir: {}
           {{- end }}
+        - name: server-var-log
+          emptyDir: {}
       {{- with "gdscan.imagePullSecrets" }}
       imagePullSecrets: 
         {{- toYaml . | nindent 8 }}
@@ -53,6 +57,8 @@ spec:
           image: '{{ .Values.server.image.repository }}:{{ .Values.server.image.tag | default "latest" }}'
           imagePullPolicy: {{ .Values.server.image.pullPolicy }}
           volumeMounts:
+            - name: server-tmp
+              mountPath: /tmp
             - name: samples
               mountPath: /tmp/scan
             - name: scan-socket
