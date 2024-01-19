@@ -45,10 +45,7 @@ spec:
           {{- end }}
         - name: server-var-log
           emptyDir: {}
-      {{- with "gdscan.imagePullSecrets" }}
-      imagePullSecrets: 
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+      {{- include "gdscan.imagePullSecrets" . | nindent 6 }}
       containers:
         - name: {{ .Values.server.name }}
           env:

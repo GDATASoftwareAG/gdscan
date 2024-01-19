@@ -3,23 +3,23 @@ deploymentStrategy: "Recreate"
 server:
   name: server
   image:
-    repository: ghcr.io/gdatasoftwareag/scanserver
+    repository: ghcr.io/gdatasoftwareag/vaas/scanserver
     pullPolicy: Always
-    tag: 1.8.0
+    tag: 1.9.6
   containerSecurityContext:
     enabled: false
 client:
   name: client
   image:
-    repository: ghcr.io/gdatasoftwareag/scanclient
+    repository: ghcr.io/gdatasoftwareag/vaas/scanclient
     pullPolicy: Always
-    tag: 1.8.0
+    tag: 1.9.6
   containerSecurityContext:
     enabled: false
 terminationGracePeriodSeconds: 30
 
 imagePullSecrets:
-  - name: gdscanregistry
+  - gdscanregistry
 
 nameOverride: ""
 fullnameOverride: ""
