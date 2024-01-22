@@ -41,7 +41,7 @@ jobs:
         run: ct lint --validate-maintainers=false --charts charts/gdscan
 
       - name: Run chart-releaser
-        if: github.ref == 'refs/heads/main'
+        if: startsWith(github.ref, 'refs/tags/')
         uses: helm/chart-releaser-action@v1.6.0
         env:
           CR_TOKEN: "${{ secrets.BOT_SECRET }}"
