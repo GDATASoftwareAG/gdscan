@@ -5,7 +5,7 @@ server:
   image:
     repository: ghcr.io/gdatasoftwareag/vaas/scanserver
     pullPolicy: Always
-    tag: 1.9.6
+    tag: 1
   containerSecurityContext:
     enabled: false
 client:
@@ -13,7 +13,7 @@ client:
   image:
     repository: ghcr.io/gdatasoftwareag/vaas/scanclient
     pullPolicy: Always
-    tag: 1.9.6
+    tag: 1
   containerSecurityContext:
     enabled: false
 terminationGracePeriodSeconds: 30
