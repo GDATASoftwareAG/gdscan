@@ -39,10 +39,8 @@ spec:
           emptyDir: {}
         - name: scan-socket
           emptyDir: {}
-          {{- if .Values.client.containerSecurityContext.enabled }}          
         - name: client-tmp
           emptyDir: {}
-          {{- end }}
         - name: server-var-log
           emptyDir: {}
       {{- include "gdscan.imagePullSecrets" . | nindent 6 }}
@@ -53,6 +51,9 @@ spec:
               value: "{{ now | unixEpoch }}"
           image: '{{ .Values.server.image.repository }}:{{ .Values.server.image.tag | default "latest" }}'
           imagePullPolicy: {{ .Values.server.image.pullPolicy }}
+          {{- if .Values.server.containerSecurityContext.enabled }}
+          securityContext: {{- omit .Values.server.containerSecurityContext "enabled" | toYaml | nindent 12 }}
+          {{- end }}
           volumeMounts:
             - name: server-tmp
               mountPath: /tmp
@@ -75,10 +76,8 @@ spec:
               mountPath: /tmp/scan
             - name: scan-socket
               mountPath: /var/share/run
-              {{- if .Values.client.containerSecurityContext.enabled }}
             - name: client-tmp
               mountPath: /tmp
-              {{- end }}
           resources:
             {{- toYaml .Values.resources.client | nindent 12 }}
           ports:
@@ -96,8 +95,8 @@ spec:
               path: /health
               port: api
             initialDelaySeconds: 15
-            periodSeconds: 5     
-      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}      
+            periodSeconds: 5
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -110,4 +109,6 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      securityContext:
+        fsGroup: 1654
 {{- end }}
