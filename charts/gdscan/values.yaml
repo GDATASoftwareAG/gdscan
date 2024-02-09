@@ -7,7 +7,16 @@ server:
     pullPolicy: Always
     tag: 1
   containerSecurityContext:
-    enabled: false
+    enabled: true
+    readOnlyRootFilesystem: true
+    allowPrivilegeEscalation: false
+    runAsNonRoot: true
+    capabilities:
+      drop: ["ALL"]
+    seccompProfile:
+      type: RuntimeDefault
+    runAsGroup: 1001
+    runAsUser: 1001
 client:
   name: client
   image:
@@ -15,7 +24,14 @@ client:
     pullPolicy: Always
     tag: 1
   containerSecurityContext:
-    enabled: false
+    enabled: true
+    readOnlyRootFilesystem: true
+    allowPrivilegeEscalation: false
+    runAsNonRoot: true
+    capabilities:
+      drop: ["ALL"]
+    seccompProfile:
+      type: RuntimeDefault
 terminationGracePeriodSeconds: 30
 
 imagePullSecrets:
@@ -88,9 +104,16 @@ autoUpdate:
   image:
     registry: docker.io
     repository: bitnami/kubectl
-    tag: latest
+    tag: 1.29
   containerSecurityContext:
-    enabled: false
+    enabled: true
+    readOnlyRootFilesystem: true
+    allowPrivilegeEscalation: false
+    runAsNonRoot: true
+    capabilities:
+      drop: ["ALL"]
+    seccompProfile:
+      type: RuntimeDefault
   enabled: true
   # every hour
   schedule: "0 * * * *"
