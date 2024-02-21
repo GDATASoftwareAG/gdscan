@@ -61,7 +61,7 @@ spec:
             - name: server-var-log
               mountPath: /var/log
           resources:
-            {{- toYaml .Values.resources.server | nindent 12 }}
+            {{- toYaml .Values.server.resources | nindent 12 }}
         - name: {{ .Values.client.name }}
           image: "{{ .Values.client.image.repository }}:{{ .Values.client.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.client.image.pullPolicy }}
@@ -76,7 +76,7 @@ spec:
             - name: client-tmp
               mountPath: /tmp
           resources:
-            {{- toYaml .Values.resources.client | nindent 12 }}
+            {{- toYaml .Values.client.resources | nindent 12 }}
           ports:
             - name: api
               containerPort: 8080
