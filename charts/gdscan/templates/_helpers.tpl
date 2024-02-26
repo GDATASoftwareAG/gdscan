@@ -109,3 +109,12 @@ app.kubernetes.io/namespace: {{ .Release.Namespace }}
 {{- end -}}
 
 {{- end -}}
+
+{{- define "common.secondsToHHMMSS" -}}
+{{- $totalSeconds := . -}}
+{{- $hours := div $totalSeconds 3600 | printf "%02d" -}}
+{{- $totalSeconds = mod $totalSeconds 3600 -}}
+{{- $minutes := div $totalSeconds 60 | printf "%02d" -}}
+{{- $seconds := mod $totalSeconds 60 | printf "%02d" -}}
+{{- printf "%s:%s:%s" $hours $minutes $seconds -}}
+{{- end -}}

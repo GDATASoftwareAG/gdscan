@@ -96,6 +96,9 @@ spec:
               port: api
             initialDelaySeconds: 15
             periodSeconds: 5
+          env:
+            - name: HostOptions__ShutdownTimeout
+              value: {{ include "common.secondsToHHMMSS" .Values.terminationGracePeriodSeconds | quote }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
