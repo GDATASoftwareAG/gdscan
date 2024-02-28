@@ -24,6 +24,9 @@ imagePullSecrets:
 nameOverride: ""
 fullnameOverride: ""
 
+networkPolicy:
+  enabled: false
+
 podAnnotations: {}
 
 secret:
