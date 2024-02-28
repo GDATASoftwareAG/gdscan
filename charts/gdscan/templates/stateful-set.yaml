@@ -37,14 +37,10 @@ spec:
           emptyDir: {}
         - name: scan-socket
           emptyDir: {}
-          {{- if .Values.client.containerSecurityContext.enabled }}
         - name: client-tmp
           emptyDir: {}
-          {{- end }}
-          {{- if .Values.server.containerSecurityContext.enabled }}
         - name: server-var-log
           emptyDir: {}
-          {{- end }}
       containers:
         - name: {{ .Values.server.name }}
           env:
@@ -62,10 +58,8 @@ spec:
               mountPath: /tmp/scan
             - name: scan-socket
               mountPath: /var/share/run
-              {{- if .Values.server.containerSecurityContext.enabled }}
             - name: server-var-log
               mountPath: /var/log
-              {{- end }}
           resources:
             {{- toYaml .Values.resources.server | nindent 12 }}
         - name: {{ .Values.client.name }}
@@ -79,10 +73,8 @@ spec:
               mountPath: /tmp/scan
             - name: scan-socket
               mountPath: /var/share/run
-              {{- if .Values.client.containerSecurityContext.enabled }}
             - name: client-tmp
               mountPath: /tmp
-              {{- end }}
           resources:
             {{- toYaml .Values.resources.client | nindent 12 }}
           ports:
@@ -101,7 +93,10 @@ spec:
               port: api
             initialDelaySeconds: 15
             periodSeconds: 5
-      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}       
+          env:
+            - name: HostOptions__ShutdownTimeout
+              value: {{ include "common.secondsToHHMMSS" .Values.terminationGracePeriodSeconds | quote }}
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -114,4 +109,6 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      securityContext:
+        fsGroup: 1654
 {{- end }}

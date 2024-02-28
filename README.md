@@ -62,12 +62,13 @@ helm upgrade gdscan  gdscan/gdscan -f values.yaml
 
 # Options
 
-| Name                               | Description                                                                                                           | Value                    |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------ |
-| `service.type`                     | service type                                                                                                          | `ClusterIP`              |
-| `service.ports.api`                | API service port                                                                                                      | `8080`                   |
-| `service.annotations`              | service annotations                                                                                                   | `{}`                     |
-| `replicaCount`                     | number of pods                                                                                                        | `1`                      |
-| `autoscaling.enabled`              | enable auto scaling                                                                                                   | `false`                  |            
-| `autoscaling.maxReplicas`          | maximum number of replicas                                                                                            | `20`                     |
-| `autoscaling.metrics`              | custom metrics for auto scaling                                                                                       |                          |
+| Name                            | Description                                                                                                           | Value                    |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| `service.type`                  | service type                                                                                                          | `ClusterIP`              |
+| `service.ports.api`             | API service port                                                                                                      | `8080`                   |
+| `service.annotations`           | service annotations                                                                                                   | `{}`                     |
+| `replicaCount`                  | number of pods                                                                                                        | `1`                      |
+| `autoscaling.enabled`           | enable auto scaling                                                                                                   | `false`                  |            
+| `autoscaling.maxReplicas`       | maximum number of replicas                                                                                            | `20`                     |
+| `autoscaling.metrics`           | custom metrics for auto scaling                                                                                       |                          |
+| `terminationGracePeriodSeconds` | max time in seconds for scans to complete                                                                             | `30`                     |
