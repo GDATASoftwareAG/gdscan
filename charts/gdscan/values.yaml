@@ -123,3 +123,5 @@ autoUpdate:
   networkPolicy:
     enabled: true
     k8sApiPort: 6443
+
+debug: false
