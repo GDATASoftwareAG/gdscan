@@ -36,12 +36,12 @@ spec:
           {{- end }}
         {{- end }}
         - name: server-tmp
-          {{- if or (.Values.server.inmemory) (.Values.server.sizeLimit.enabled) }}
+          {{- if or (.Values.server.tempfolder.inmemory) (.Values.server.tempfolder.sizeLimit.enabled) }}
           emptyDir:
-            {{- if .Values.server.sizeLimit.enabled }}
-            sizeLimit: {{ .Values.server.sizeLimit.size | quote }}
+            {{- if .Values.server.tempfolder.sizeLimit.enabled }}
+            sizeLimit: {{ .Values.server.tempfolder.sizeLimit.size | quote }}
             {{- end }}
-            {{- if .Values.server.inmemory }}
+            {{- if .Values.server.tempfolder.inmemory }}
             medium : "Memory"
             {{- end }}
           {{- else }}
@@ -50,12 +50,12 @@ spec:
         - name: scan-socket
           emptyDir: {}
         - name: client-tmp
-          {{- if or (.Values.client.inmemory) (.Values.client.sizeLimit.enabled) }}
+          {{- if or (.Values.client.tempfolder.inmemory) (.Values.client.tempfolder.sizeLimit.enabled) }}
           emptyDir:
-            {{- if .Values.client.sizeLimit.enabled }}
-            sizeLimit: {{ .Values.client.sizeLimit.size | quote }}
+            {{- if .Values.client.tempfolder.sizeLimit.enabled }}
+            sizeLimit: {{ .Values.client.tempfolder.sizeLimit.size | quote }}
             {{- end }}
-            {{- if .Values.client.inmemory }}
+            {{- if .Values.client.tempfolder.inmemory }}
             medium : "Memory"
             {{- end }}
           {{- else }}
