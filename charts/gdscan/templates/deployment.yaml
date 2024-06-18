@@ -36,11 +36,31 @@ spec:
           {{- end }}
         {{- end }}
         - name: server-tmp
+          {{- if or (.Values.server.inmemory) (.Values.server.sizeLimit.enabled) }}
+          emptyDir:
+            {{- if .Values.server.sizeLimit.enabled }}
+            sizeLimit: {{ .Values.server.sizeLimit.size | quote }}
+            {{- end }}
+            {{- if .Values.server.inmemory }}
+            medium : "Memory"
+            {{- end }}
+          {{- else }}
           emptyDir: {}
+          {{- end }}
         - name: scan-socket
           emptyDir: {}
         - name: client-tmp
+          {{- if or (.Values.client.inmemory) (.Values.client.sizeLimit.enabled) }}
+          emptyDir:
+            {{- if .Values.client.sizeLimit.enabled }}
+            sizeLimit: {{ .Values.client.sizeLimit.size | quote }}
+            {{- end }}
+            {{- if .Values.client.inmemory }}
+            medium : "Memory"
+            {{- end }}
+          {{- else }}
           emptyDir: {}
+          {{- end }}
         - name: server-var-log
           emptyDir: {}
       {{- include "gdscan.imagePullSecrets" . | nindent 6 }}

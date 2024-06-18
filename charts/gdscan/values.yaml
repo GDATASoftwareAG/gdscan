@@ -6,6 +6,11 @@ server:
     repository: ghcr.io/gdatasoftwareag/vaas/scanserver
     pullPolicy: Always
     tag: 1
+  tempfolder:
+    inmemory: false
+    sizeLimit:
+      enabled: false
+      size: 1Gi
   containerSecurityContext:
     enabled: true
     readOnlyRootFilesystem: true
@@ -19,6 +24,11 @@ server:
     runAsUser: 1001
 client:
   name: client
+  tempfolder:
+    inmemory: false
+    sizeLimit:
+      enabled: false
+      size: 1Gi
   image:
     repository: ghcr.io/gdatasoftwareag/vaas/scanclient
     pullPolicy: Always
