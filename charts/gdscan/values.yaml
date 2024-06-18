@@ -5,7 +5,7 @@ server:
   image:
     repository: ghcr.io/gdatasoftwareag/vaas/scanserver
     pullPolicy: Always
-    tag: 1
+    tag: "1"
   tempfolder:
     inmemory: false
     sizeLimit:
@@ -32,7 +32,7 @@ client:
   image:
     repository: ghcr.io/gdatasoftwareag/vaas/scanclient
     pullPolicy: Always
-    tag: 1
+    tag: "1"
   containerSecurityContext:
     enabled: true
     readOnlyRootFilesystem: true
@@ -117,7 +117,7 @@ autoUpdate:
   image:
     registry: docker.io
     repository: bitnami/kubectl
-    tag: 1.29
+    tag: "1.29"
   containerSecurityContext:
     enabled: true
     readOnlyRootFilesystem: true
