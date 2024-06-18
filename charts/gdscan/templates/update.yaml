@@ -67,6 +67,9 @@ spec:
               {{- end }}                
               command:
                 - "kubectl"
+{{- if .Values.debug }}
+                - "-v=8"
+{{- end }}
                 - "rollout"
                 - "restart"
 {{- if and (.Values.persistence.enabled) (eq .Values.persistence.accessMode "ReadWriteOnce" ) }}

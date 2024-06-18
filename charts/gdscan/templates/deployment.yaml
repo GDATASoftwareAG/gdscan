@@ -99,6 +99,10 @@ spec:
           env:
             - name: HostOptions__ShutdownTimeout
               value: {{ include "common.secondsToHHMMSS" .Values.terminationGracePeriodSeconds | quote }}
+          {{- if .Values.debug }}
+            - name: Serilog__MinimumLevel__Override__ScanClient.Controllers.ScanController
+              value: Debug
+          {{- end }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
