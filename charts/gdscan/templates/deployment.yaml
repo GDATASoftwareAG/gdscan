@@ -48,7 +48,14 @@ spec:
           emptyDir: {}
           {{- end }}
         - name: scan-socket
+          {{- if or (.Values.scanSocketFolder.inmemory) }}
+          emptyDir:
+            {{- if .Values.scanSocketFolder.inmemory }}
+            medium : "Memory"
+            {{- end }}
+          {{- else }}
           emptyDir: {}
+          {{- end }}
         - name: client-tmp
           {{- if or (.Values.client.tempfolder.inmemory) (.Values.client.tempfolder.sizeLimit.enabled) }}
           emptyDir:
@@ -62,7 +69,17 @@ spec:
           emptyDir: {}
           {{- end }}
         - name: server-var-log
+          {{- if or (.Values.server.logFolder.inmemory) (.Values.server.logFolder.sizeLimit.enabled) }}
+          emptyDir:
+            {{- if .Values.server.logFolder.sizeLimit.enabled }}
+            sizeLimit: {{ .Values.server.logFolder.sizeLimit.size | quote }}
+            {{- end }}
+            {{- if .Values.server.logFolder.inmemory }}
+            medium : "Memory"
+            {{- end }}
+          {{- else }}
           emptyDir: {}
+          {{- end }}
       {{- include "gdscan.imagePullSecrets" . | nindent 6 }}
       containers:
         - name: {{ .Values.server.name }}
