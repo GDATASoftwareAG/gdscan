@@ -1,5 +1,7 @@
 replicaCount: 1
 deploymentStrategy: "Recreate"
+scanSocketFolder:
+  inmemory: false
 server:
   name: server
   image:
@@ -7,6 +9,11 @@ server:
     pullPolicy: Always
     tag: "1"
   tempfolder:
+    inmemory: false
+    sizeLimit:
+      enabled: false
+      size: 1Gi
+  logFolder:
     inmemory: false
     sizeLimit:
       enabled: false
