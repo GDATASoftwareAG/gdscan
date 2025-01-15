@@ -124,7 +124,7 @@ autoUpdate:
   image:
     registry: docker.io
     repository: bitnami/kubectl
-    tag: "1.31"
+    tag: "1.32"
   containerSecurityContext:
     enabled: true
     readOnlyRootFilesystem: true
