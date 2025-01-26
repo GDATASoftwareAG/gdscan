@@ -35,13 +35,13 @@ jobs:
           python-version: 3
 
       - name: Set up chart-testing
-        uses: helm/chart-testing-action@v2.6.1
+        uses: helm/chart-testing-action@v2.7.0
 
       - name: Run chart-testing (lint)
         run: ct lint --validate-maintainers=false --charts charts/gdscan
 
       - name: Run chart-releaser
         if: github.ref == 'refs/heads/main'
-        uses: helm/chart-releaser-action@v1.6.0
+        uses: helm/chart-releaser-action@v1.7.0
         env:
           CR_TOKEN: "${{ secrets.BOT_SECRET }}"
